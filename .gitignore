@@ -9,7 +9,6 @@ __pycache__/
 .env
 .git
 .gitignore
-.github/
 terraform/
 *.md
 *.terraform*
