@@ -40,14 +40,14 @@ fi
 
 # ── Pull & Run Container ───────────────────────────────
 echo "📥 Pulling image: $DOCKERHUB_IMAGE:$IMAGE_TAG"
-docker pull $DOCKERHUB_IMAGE:$IMAGE_TAG
+sudo docker pull $DOCKERHUB_IMAGE:$IMAGE_TAG
 
 echo "🛑 Stopping old container..."
-docker stop devops-app || true
-docker rm devops-app || true
+sudo docker stop devops-app || true
+sudo docker rm devops-app || true
 
 echo "▶️  Starting new container..."
-docker run -d \
+sudo docker run -d \
   --name devops-app \
   --restart always \
   -p 8000:8000 \
@@ -57,7 +57,7 @@ docker run -d \
 
 echo "🔄 Running migrations..."
 sleep 5  # wait for container to fully start
-docker exec devops-app python manage.py migrate --noinput
+sudo docker exec devops-app python manage.py migrate --noinput
 
 # ── Configure Nginx ────────────────────────────────────
 echo "⚙️  Configuring Nginx..."
@@ -105,4 +105,4 @@ echo ""
 echo "✅ Deployment complete!"
 echo "🌍 App live at: https://$DOMAIN"
 echo ""
-docker ps
+sudo docker ps
