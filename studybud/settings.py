@@ -25,7 +25,12 @@ SECRET_KEY = 'django-insecure-3#av2c6nptlbbb6^muqkchu&fe3wv&n$t2+g$v!ir-f5%doocb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+# studybud/settings.py
+ALLOWED_HOSTS = ['studybud.duckdns.com', '44.201.45.108', 'localhost', '127.0.0.1',]
+
+# Add these for HTTPS
+CSRF_TRUSTED_ORIGINS = ['https://studybud.duckdns.com']
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 # Application definition
