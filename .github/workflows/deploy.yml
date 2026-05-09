@@ -102,16 +102,18 @@ jobs:
           target: "/home/ubuntu/"
           strip_components: 1
 
+
       - name: SSH & run deploy
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
+          command_timeout: 10m
           script: |
             chmod +x /home/ubuntu/deploy.sh
-            /home/ubuntu/scripts/deploy.sh \
-              ${{ secrets.DOCKERHUB_USERNAME }}/studybud \
-              ${{ github.sha }}
-               ${{ secrets.DOMAIN }} \
-               ${{ secrets.CERTBOT_EMAIL }}
+            /home/ubuntu/deploy.sh \
+            ${{ secrets.DOCKERHUB_USERNAME }}/studybud \
+            ${{ github.sha }} \
+             ${{ secrets.DOMAIN }} \
+             ${{ secrets.CERTBOT_EMAIL }} 
