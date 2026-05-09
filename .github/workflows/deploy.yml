@@ -109,7 +109,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            chmod +x /home/ubuntu/scripts/deploy.sh
+            chmod +x /home/ubuntu/deploy.sh
             /home/ubuntu/scripts/deploy.sh \
               ${{ secrets.DOCKERHUB_USERNAME }}/studybud \
               ${{ github.sha }}
