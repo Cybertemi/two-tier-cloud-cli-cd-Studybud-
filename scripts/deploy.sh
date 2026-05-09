@@ -59,6 +59,11 @@ echo "🔄 Running migrations..."
 sleep 5  # wait for container to fully start
 sudo docker exec devops-app python manage.py migrate --noinput
 
+echo "📁 Copying static files..."
+sudo mkdir -p /home/ubuntu/static
+sudo docker cp devops-app:/app/staticfiles/. /home/ubuntu/static/
+sudo chown -R www-data:www-data /home/ubuntu/static
+
 # ── Configure Nginx ────────────────────────────────────
 echo "⚙️  Configuring Nginx..."
 sudo tee /etc/nginx/sites-available/studybud > /dev/null <<EOF
